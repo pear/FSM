@@ -6,10 +6,12 @@ require_once 'Console/Getopt.php';
 $version = '1.2.2';
 $notes = <<<EOT
 Small documentation and code cleanups.
+setDefaultTransition() was incorrectly removing default transitions.
 EOT;
 
 $changelog = <<<EOT
 Small documentation and code cleanups. (Bugs 3014, 3015)
+setDefaultTransition() was incorrectly removing the transition if nextState was 0. (Bug 3130)
 EOT;
 
 $package = new PEAR_PackageFileManager();

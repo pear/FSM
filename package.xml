@@ -14,10 +14,11 @@
   </maintainers>
   <release>
     <version>1.2.2</version>
-    <date>2004-12-22</date>
+    <date>2005-01-08</date>
     <license>PHP License</license>
     <state>stable</state>
-    <notes>Small documentation and code cleanups.</notes>
+    <notes>Small documentation and code cleanups.
+setDefaultTransition() was incorrectly removing default transitions.</notes>
     <filelist>
       <dir baseinstalldir="/" name="/">
        <dir name="docs">
@@ -36,10 +37,11 @@
   <changelog>
     <release>
       <version>1.2.2</version>
-      <date>2004-12-22</date>
+      <date>2005-01-08</date>
       <license>PHP License</license>
       <state>stable</state>
-      <notes>Small documentation and code cleanups. (Bugs 3014, 3015)</notes>
+      <notes>Small documentation and code cleanups. (Bugs 3014, 3015)
+setDefaultTransition() was incorrectly removing the transition if nextState was 0. (Bug 3130)</notes>
     </release>
     <release>
       <version>1.2.1</version>
