@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package>
-    <name>FSM</name>
-    <summary>Finite State Machine</summary>
-    <description>
-The FSM package provides a simple class that implements a Finite State Machine.
-    </description>
-    <license>PHP</license>
-    <maintainers>
-        <maintainer>
-            <user>jon</user>
-            <name>Jon Parise</name>
-            <email>jon@php.net</email>
-            <role>lead</role>
-        </maintainer>
-    </maintainers>
+<package version="1.0">
+  <name>FSM</name>
+  <summary>Finite State Machine</summary>
+  <description>The FSM package provides a simple class that implements a Finite State Machine.</description>
+  <maintainers>
+    <maintainer>
+      <user>jon</user>
+      <name>Jon Parise</name>
+      <email>jon@php.net</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>1.2.2</version>
+    <date>2004-01-29</date>
+    <license>PHP License</license>
+    <state>stable</state>
+    <filelist>
+      <file role="doc" baseinstalldir="/" name="docs/examples/rpn.php"/>
+      <file role="test" baseinstalldir="/" name="tests/001.phpt"/>
+      <file role="php" baseinstalldir="/" name="FSM.php"/>
+    </filelist>
+  </release>
+  <changelog>
     <release>
-        <version>1.2.1</version>
-        <date>2003-10-03</date>
-        <state>stable</state>
-        <notes>
-Fixing another bug related to passing the payload by reference.
-        </notes>
-      <filelist>
-        <dir name="/">
-          <file role="php">FSM.php</file>
-        </dir>
-      </filelist>
+      <version>1.2.2</version>
+      <date>2004-01-29</date>
+      <license>PHP License</license>
+      <state>stable</state>
     </release>
-    <changelog>
-        <release>
-            <version>1.2.0</version>
-            <date>2003-09-30</date>
-            <state>stable</state>
-            <notes>
-Fixing the call-time pass-by-reference issues with Zend Engine 2.
-            </notes>
-        </release>
-        <release>
-            <version>1.1.0</version>
-            <date>2002-12-29</date>
-            <state>stable</state>
-            <notes>
-Callback functions may optionally return the name of a new state.
-            </notes>
-        </release>
-        <release>
-            <version>1.0.0</version>
-            <date>2002-11-09</date>
-            <state>stable</state>
-            <notes>
-- Initial release of the FSM package.
-            </notes>
-        </release>
-    </changelog>
+    <release>
+      <version>1.2.1</version>
+      <date>2003-10-03</date>
+      <license>PHP</license>
+      <state>stable</state>
+      <notes>Fixing another bug related to passing the payload by reference.</notes>
+    </release>
+    <release>
+      <version>1.2.0</version>
+      <date>2003-09-30</date>
+      <state>stable</state>
+      <notes>Fixing the call-time pass-by-reference issues with Zend Engine 2.</notes>
+    </release>
+    <release>
+      <version>1.1.0</version>
+      <date>2002-12-29</date>
+      <state>stable</state>
+      <notes>Callback functions may optionally return the name of a new state.</notes>
+    </release>
+    <release>
+      <version>1.0.0</version>
+      <date>2002-11-09</date>
+      <state>stable</state>
+      <notes>- Initial release of the FSM package.</notes>
+    </release>
+  </changelog>
 </package>
