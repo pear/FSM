@@ -30,7 +30,6 @@
  * @version $Revision$
  * @package FSM
  */
-
 class FSM {
 
     /**
@@ -38,6 +37,7 @@ class FSM {
      *
      * @var string
      * @see $_currentState
+     * @access private
      */
     var $_initialState = '';
 
@@ -46,6 +46,7 @@ class FSM {
      *
      * @var string
      * @see $_initialState
+     * @access private
      */
     var $_currentState = '';
 
@@ -53,6 +54,7 @@ class FSM {
      * Contains the payload that will be passed to each action function.
      *
      * @var mixed
+     * @access private
      */
     var $_payload = null;
 
@@ -61,6 +63,7 @@ class FSM {
      *
      * @var array
      * @see $_inputState, $_currentState
+     * @access private
      */
     var $_transitions = array();
 
@@ -69,6 +72,7 @@ class FSM {
      *
      * @var array
      * @see $_inputState, $_currentState
+     * @access private
      */
     var $_transitionsAny = array();
 
@@ -77,6 +81,7 @@ class FSM {
      * transition has been defined.
      *
      * @var array
+     * @access private
      */
     var $_defaultTransition = null;
 
