@@ -3,7 +3,7 @@
 /* +----------------------------------------------------------------------+
  * | PHP Version 4                                                        |
  * +----------------------------------------------------------------------+
- * | Copyright (c) 1997-2003 The PHP Group                                |
+ * | Copyright (c) 1997-2004 The PHP Group                                |
  * +----------------------------------------------------------------------+
  * | This source file is subject to version 2.02 of the PHP license,      |
  * | that is bundled with this package in the file LICENSE, and is        |
@@ -26,9 +26,16 @@
  * payload, therefore effectively making the machine a Push-Down Automata
  * (a finite state machine with memory).
  *
+ * This code is based on Noah Spurrier's Finite State Machine (FSM) submission
+ * to the Python Cookbook:
+ *
+ *      http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/146262
+ *
  * @author  Jon Parise <jon@php.net>
  * @version $Revision$
  * @package FSM
+ *
+ * @example rpn.php     A Reverse Polish Notation (RPN) calculator.
  */
 class FSM
 {
