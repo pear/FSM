@@ -69,7 +69,7 @@ class FSM
      * Maps (inputSymbol, currentState) --> (action, nextState).
      *
      * @var array
-     * @see $_inputState, $_currentState
+     * @see $_initialState, $_currentState
      * @access private
      */
     var $_transitions = array();
