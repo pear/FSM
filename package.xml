@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<package>
+    <name>FSM</name>
+    <summary>Finite State Machine</summary>
+    <description>
+The FSM package provides a simple class that implements a Finite State Machine.
+    </description>
+    <license>PHP</license>
+    <maintainers>
+        <maintainer>
+            <user>jon</user>
+            <name>Jon Parise</name>
+            <email>jon@php.net</email>
+            <role>lead</role>
+        </maintainer>
+    </maintainers>
+    <release>
+        <version>1.0.0</version>
+        <date>2002-11-09</date>
+        <state>stable</state>
+        <notes>
+- Initial release of the FSM package.
+        </notes>
+      <filelist>
+        <dir name="/">
+          <file role="php">FSM.php</file>
+        </dir>
+      </filelist>
+    </release>
+</package>
