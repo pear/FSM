@@ -227,6 +227,9 @@ class FSM {
      * provided symbol and the current state.  If no valid transition is found,
      * process() returns immediately.
      *
+     * The action callback may return the name of a new state.  If one is
+     * returned, the current state will be updated to the new value.
+     *
      * If no action is defined for the transition, only the state will be
      * changed.
      *
@@ -243,13 +246,18 @@ class FSM {
             return;
         }
 
-        /* If an action for this transition has been specified, execute it. */
-        if (!empty($transition[1])) {
-            call_user_func($transition[1], $symbol, &$this->_payload);
-        }
-
         /* Update the current state to this transition's exit state. */
         $this->_currentState = $transition[0];
+
+        /* If an action for this transition has been specified, execute it. */
+        if (!empty($transition[1])) {
+            $state = call_user_func($transition[1], $symbol, &$this->_payload);
+
+            /* If a new state was returned, update the current state. */
+            if (!empty($state) && is_string($state)) {
+                $this->_currentState = $state;
+            }
+        }
     }
 
     /**
