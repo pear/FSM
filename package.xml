@@ -15,11 +15,11 @@ The FSM package provides a simple class that implements a Finite State Machine.
         </maintainer>
     </maintainers>
     <release>
-        <version>1.0.0</version>
-        <date>2002-11-09</date>
+        <version>1.1.0</version>
+        <date>2002-12-29</date>
         <state>stable</state>
         <notes>
-- Initial release of the FSM package.
+Callback functions may optionally return the name of a new state.
         </notes>
       <filelist>
         <dir name="/">
@@ -27,4 +27,14 @@ The FSM package provides a simple class that implements a Finite State Machine.
         </dir>
       </filelist>
     </release>
+	<changelog>
+		<release>
+			<version>1.0.0</version>
+			<date>2002-11-09</date>
+			<state>stable</state>
+			<notes>
+- Initial release of the FSM package.
+			</notes>
+		</release>
+	</changelog>
 </package>
