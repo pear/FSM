@@ -30,8 +30,8 @@
  * @version $Revision$
  * @package FSM
  */
-class FSM {
-
+class FSM
+{
     /**
      * Represents the initial state of the machine.
      *
@@ -256,7 +256,7 @@ class FSM {
 
         /* If an action for this transition has been specified, execute it. */
         if (!empty($transition[1])) {
-            $state = call_user_func($transition[1], $symbol, &$this->_payload);
+            $state = call_user_func($transition[1], $symbol, $this->_payload);
 
             /* If a new state was returned, update the current state. */
             if (!empty($state) && is_string($state)) {

@@ -16,11 +16,11 @@ The FSM package provides a simple class that implements a Finite State Machine.
         </maintainer>
     </maintainers>
     <release>
-        <version>1.1.0</version>
-        <date>2002-12-29</date>
+        <version>1.2.0</version>
+        <date>2003-09-30</date>
         <state>stable</state>
         <notes>
-Callback functions may optionally return the name of a new state.
+Fixing the call-time pass-by-reference issues with Zend Engine 2.
         </notes>
       <filelist>
         <dir name="/">
@@ -29,6 +29,14 @@ Callback functions may optionally return the name of a new state.
       </filelist>
     </release>
     <changelog>
+        <release>
+            <version>1.1.0</version>
+            <date>2002-12-29</date>
+            <state>stable</state>
+            <notes>
+Callback functions may optionally return the name of a new state.
+            </notes>
+        </release>
         <release>
             <version>1.0.0</version>
             <date>2002-11-09</date>

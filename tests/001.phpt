@@ -5,19 +5,19 @@ FSM: Transitions
 
 require_once 'FSM.php';
 
-function defaultTransition($symbol, $payload)
+function defaultTransition($symbol, &$payload)
 {
     array_push($payload, $symbol);
     echo "Default\n";
 }
 
-function transition1($symbol, $payload)
+function transition1($symbol, &$payload)
 {
     array_push($payload, $symbol);
     echo "Transition 1\n";
 }
 
-function transition2($symbol, $payload)
+function transition2($symbol, &$payload)
 {
     array_push($payload, $symbol);
     echo "Transition 2\n";
