@@ -193,7 +193,7 @@ class FSM
      */
     function setDefaultTransition($nextState, $action)
     {
-        if (empty($nextState)) {
+        if (is_null($nextState)) {
             $this->_defaultTransition = null;
             return;
         }
