@@ -113,13 +113,11 @@ class FSM
 
     /**
      * This method resets the FSM by setting the current state back to the
-     * initial state (set by the constructor).  The current input symbol is
-     * also reset to NULL.
+     * initial state (set by the constructor).
      */
     function reset()
     {
         $this->_currentState = $this->_initialState;
-        $this->_inputSymbol = null;
     }
 
     /**
