@@ -14,21 +14,32 @@
   </maintainers>
   <release>
     <version>1.2.2</version>
-    <date>2004-01-29</date>
+    <date>2004-12-22</date>
     <license>PHP License</license>
     <state>stable</state>
+    <notes>Small documentation and code cleanups.</notes>
     <filelist>
-      <file role="doc" baseinstalldir="/" name="docs/examples/rpn.php"/>
-      <file role="test" baseinstalldir="/" name="tests/001.phpt"/>
-      <file role="php" baseinstalldir="/" name="FSM.php"/>
+      <dir baseinstalldir="/" name="/">
+       <dir name="docs">
+        <file role="doc" name="guide.txt"/>
+        <dir name="examples">
+         <file role="doc" name="rpn.php"/>
+        </dir> <!-- docs/examples -->
+       </dir> <!-- docs -->
+       <dir name="tests">
+        <file role="test" name="001.phpt"/>
+       </dir> <!-- tests -->
+       <file role="php" name="FSM.php"/>
+      </dir> <!-- / -->
     </filelist>
   </release>
   <changelog>
     <release>
       <version>1.2.2</version>
-      <date>2004-01-29</date>
+      <date>2004-12-22</date>
       <license>PHP License</license>
       <state>stable</state>
+      <notes>Small documentation and code cleanups. (Bugs 3014, 3015)</notes>
     </release>
     <release>
       <version>1.2.1</version>
