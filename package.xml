@@ -27,14 +27,14 @@ Callback functions may optionally return the name of a new state.
         </dir>
       </filelist>
     </release>
-	<changelog>
-		<release>
-			<version>1.0.0</version>
-			<date>2002-11-09</date>
-			<state>stable</state>
-			<notes>
+    <changelog>
+        <release>
+            <version>1.0.0</version>
+            <date>2002-11-09</date>
+            <state>stable</state>
+            <notes>
 - Initial release of the FSM package.
-			</notes>
-		</release>
-	</changelog>
+            </notes>
+        </release>
+    </changelog>
 </package>
