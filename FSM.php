@@ -23,8 +23,8 @@
  * This class implements a Finite State Machine (FSM).
  *
  * In addition to maintaining state, this FSM also maintains a user-defined
- * payload, therefore making effectively making the machine a Push-Down
- * Automata (a finite state machine with memory).
+ * payload, therefore effectively making the machine a Push-Down Automata
+ * (a finite state machine with memory).
  *
  * @author  Jon Parise <jon@php.net>
  * @version $Revision$
