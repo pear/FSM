@@ -16,11 +16,11 @@ The FSM package provides a simple class that implements a Finite State Machine.
         </maintainer>
     </maintainers>
     <release>
-        <version>1.2.0</version>
-        <date>2003-09-30</date>
+        <version>1.2.1</version>
+        <date>2003-10-03</date>
         <state>stable</state>
         <notes>
-Fixing the call-time pass-by-reference issues with Zend Engine 2.
+Fixing another bug related to passing the payload by reference.
         </notes>
       <filelist>
         <dir name="/">
@@ -29,6 +29,14 @@ Fixing the call-time pass-by-reference issues with Zend Engine 2.
       </filelist>
     </release>
     <changelog>
+        <release>
+            <version>1.2.0</version>
+            <date>2003-09-30</date>
+            <state>stable</state>
+            <notes>
+Fixing the call-time pass-by-reference issues with Zend Engine 2.
+            </notes>
+        </release>
         <release>
             <version>1.1.0</version>
             <date>2002-12-29</date>
