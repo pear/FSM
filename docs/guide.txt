@@ -1,0 +1,120 @@
+=================
+ The FSM Package
+=================
+
+--------------------
+ User Documentation
+--------------------
+
+:Author:        Jon Parise
+:Contact:       jon@php.net
+:Date:          $Date$
+:Revision:      $Revision$
+
+.. contents:: Contents
+.. section-numbering::
+
+About the FSM Package
+=====================
+
+The FSM Package implements a `Finite State Machine`_.  In addition to
+maintaining state, this FSM also maintains a user-defined payload. therefore
+effectively making the machine a Push-Down Automata (a finite state machine
+with memory).
+
+This code is based largely on Noah Spurrier's excellent `FSM Python class`_.
+
+.. _Finite State Machine: http://en.wikipedia.org/wiki/Finite_state_machine
+.. _FSM Python class: http://www.noah.org/python/FSM/
+
+
+Building a Finite State Machine
+===============================
+
+The first step in building a Finite State Machine involves listing the finite
+set of states.  Then, all of the permissible transitions between these states
+must be defined.  A symbol and an optional callback function are associated
+with each transition.  The input processing routine will attempt to match its
+current symbol against the list of registered transitions.  If it a transition
+from the current state using that symbol is found, the current state will be
+updated to the new state specified by the transition and, if one has been
+specified, the associated callback function will be invoked.
+
+Creating A New FSM Object
+-------------------------
+Start by including the FSM package in your script::
+
+    require 'FSM.php';
+
+When constructing a new FSM object, you must specify the machine's initial
+state and provide a payload container.  The payload will be passed to all of
+the callback functions, allowing you to provide them with state information
+without (ab)using global variables.
+
+In this example, we pass an array representing a stack as the payload.  The
+machine's initial state is set to ``START``::
+
+    $stack = array();
+    $fsm = new FSM('START', $stack);
+
+Defining Transitions
+--------------------
+We'll need to define some transitions in order to make our machine useful.
+Let's assume our machine has two additional states: ``MIDDLE`` and ``END``.
+Here's how we would define transitions to move us from ``START`` to ``MIDDLE``
+to ``END``::
+
+    function FirstCallback($symbol, $payload)
+    {
+        echo "First Transition\n";
+    }
+
+    function SecondCallback($symbol, $payload)
+    {
+        echo "Second Transition\n";
+    }
+
+    $fsm->addTransition('FIRST', 'START', 'MIDDLE', 'FirstCallback');
+    $fsm->addTransition('SECOND', 'MIDDLE', 'END', 'SecondCallback');
+
+Our machine is now aware of three states (``START``, ``MIDDLE``, ``END``) and
+two symbols (``FIRST``, ``SECOND``).  Two transitions (``START`` to
+``MIDDLE``, and ``MIDDLE`` to ``END``) have been defined and associated with
+callbacks.  The following code will process the symbols ``FIRST`` and
+``SECOND`` and move us from our initial state (``START``) through the
+``MIDDLE`` state to the ``END`` state::
+
+    $fsm->process('FIRST');
+    $fsm->process('SECOND');
+
+The processing routine will invoke our two callbacks along the way, as well,
+resulting in the following being printed::
+
+    First Transition
+    Second Transition
+
+Setting Default Transitions
+---------------------------
+Now we'll set up a default transition.  This transition will be used whenever
+the processing routine cannot find a better match for the current state and
+symbol.  For our example, we'll consider this an error and print a warning for
+the user::
+
+    function ErrorCallback($symbol, $payload)
+    {
+        echo "This symbol does not compute: $symbol\n";
+    }
+
+    $fsm->setDefaultTransition('START', 'ErrorCallback');
+
+Now let's process our symbols in an unexcepted order::
+
+    $fsm->process('SECOND');
+    $fsm->process('FIRST');
+
+Because the ``SECOND`` transition doesn't specify ``START`` as its initial
+state, the default transition will be used and the error callback will be
+invoked.  The ``FIRST`` transition will work as expected, however, because the
+machine will remain in the ``START`` state.
+
+.. vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab textwidth=78:
