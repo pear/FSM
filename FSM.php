@@ -222,9 +222,9 @@ class FSM
     {
         $state = $this->_currentState;
 
-        if (array_key_exists("$symbol,$state", $this->_transitions)) {
+        if (!empty($this->_transitions["$symbol,$state"])) {
             return $this->_transitions["$symbol,$state"];
-        } elseif (array_key_exists($state, $this->_transitionsAny)) {
+        } elseif (!empty($this->_transitionsAny[$state])) {
             return $this->_transitionsAny[$state];
         } else {
             return $this->_defaultTransition;
