@@ -1,47 +1,60 @@
 <?php
 
-require_once 'PEAR/PackageFileManager.php';
-require_once 'Console/Getopt.php';
+require_once 'PEAR/PackageFileManager2.php';
+PEAR::setErrorHandling(PEAR_ERROR_DIE);
 
-$version = '1.2.2';
+$desc = <<<EOT
+The FSM package provides a simple class that implements a Finite State Machine.
+
+In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).
+EOT;
+
+$version = '1.2.3';
 $notes = <<<EOT
-Small documentation and code cleanups.
-setDefaultTransition() was incorrectly removing default transitions.
+- Upgraded to package.xml version 2 (via package2.xml).
+- Relicensed the package under the MIT license.
 EOT;
 
-$changelog = <<<EOT
-Small documentation and code cleanups. (Bugs 3014, 3015)
-setDefaultTransition() was incorrectly removing the transition if nextState was 0. (Bug 3130)
-EOT;
-
-$package = new PEAR_PackageFileManager();
+$package = new PEAR_PackageFileManager2();
 
 $result = $package->setOptions(array(
-    'package'           => 'FSM',
-    'summary'           => 'Finite State Machine',
-    'version'           => $version,
-    'state'             => 'stable',
-    'license'           => 'PHP License',
     'filelistgenerator' => 'cvs',
-    'ignore'            => array('package.php', 'phpdoc.sh'),
-    'notes'             => $notes,
-    'changelognotes'    => $changelog,
     'changelogoldtonew' => false,
-	'simpleoutput'		=> true,
+    'simpleoutput'		=> true,
     'baseinstalldir'    => '/',
-    'packagedirectory'  => ''));
+    'packagefile'       => 'package2.xml',
+    'packagedirectory'  => '.'));
 
 if (PEAR::isError($result)) {
     echo $result->getMessage();
     die();
 }
 
-$package->addMaintainer('jon', 'lead', 'Jon Parise', 'jon@php.net');
+$package->setPackage('FSM');
+$package->setPackageType('php');
+$package->setSummary('Finite State Machine');
+$package->setDescription($desc);
+$package->setChannel('pear.php.net');
+$package->setLicense('MIT License', 'http://www.opensource.org/licenses/mit-license.php');
+$package->setAPIVersion('1.0.0');
+$package->setAPIStability('stable');
+$package->setReleaseVersion($version);
+$package->setReleaseStability('stable');
+$package->setNotes($notes);
+$package->setPhpDep('4.0.4');
+$package->setPearinstallerDep('1.4.3');
+$package->addMaintainer('lead',  'jon', 'Jon Parise', 'jon@php.net');
+$package->addIgnore(array('package.php', 'phpdoc.sh', 'package.xml', 'package2.xml'));
+
+$package->generateContents();
+$package1 = &$package->exportCompatiblePackageFile1();
 
 if ($_SERVER['argv'][1] == 'commit') {
     $result = $package->writePackageFile();
+    $result = $package1->writePackageFile();
 } else {
     $result = $package->debugPackageFile();
+    $result = $package1->debugPackageFile();
 }
 
 if (PEAR::isError($result)) {
