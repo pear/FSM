@@ -16,7 +16,7 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
   <active>yes</active>
  </lead>
  <date>2006-04-18</date>
- <time>22:21:26</time>
+ <time>22:41:40</time>
  <version>
   <release>1.2.4</release>
   <api>1.0.0</api>
@@ -37,6 +37,7 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
    </dir> <!-- /docs -->
    <dir name="tests">
     <file name="001.phpt" role="test" />
+    <file name="addTransitionsArray.phpt" role="test" />
    </dir> <!-- /tests -->
    <file name="FSM.php" role="php" />
   </dir> <!-- / -->

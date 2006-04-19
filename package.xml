@@ -35,6 +35,7 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
     </dir> <!-- /docs -->
     <dir name="tests">
      <file role="test" name="001.phpt"/>
+     <file role="test" name="addTransitionsArray.phpt"/>
     </dir> <!-- /tests -->
     <file role="php" name="FSM.php"/>
    </dir> <!-- / -->
@@ -47,6 +48,23 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
     <license>MIT License</license>
     <state>stable</state>
     <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
+    </notes>
+   </release>
+   <release>
+    <version>1.2.4</version>
+    <date>2006-04-18</date>
+    <license>MIT License</license>
+    <state>stable</state>
+    <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
+    </notes>
+   </release>
+   <release>
+    <version>1.2.3</version>
+    <date>2006-01-18</date>
+    <license>MIT License</license>
+    <state>stable</state>
+    <notes>- Upgraded to package.xml version 2 (via package2.xml).
+- Relicensed the package under the MIT license.
     </notes>
    </release>
    <release>
