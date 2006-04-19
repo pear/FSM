@@ -15,10 +15,10 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
   <email>jon@php.net</email>
   <active>yes</active>
  </lead>
- <date>2006-01-18</date>
- <time>22:36:31</time>
+ <date>2006-04-18</date>
+ <time>22:21:26</time>
  <version>
-  <release>1.2.3</release>
+  <release>1.2.4</release>
   <api>1.0.0</api>
  </version>
  <stability>
@@ -26,8 +26,7 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
   <api>stable</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/mit-license.php">MIT License</license>
- <notes>- Upgraded to package.xml version 2 (via package2.xml).
-- Relicensed the package under the MIT license.</notes>
+ <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)</notes>
  <contents>
   <dir baseinstalldir="/" name="/">
    <dir name="docs">
@@ -54,6 +53,19 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>1.2.4</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-04-18</date>
+   <license>MIT License</license>
+   <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)</notes>
+  </release>
   <release>
    <version>
     <release>1.2.3</release>

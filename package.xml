@@ -16,12 +16,11 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
   </maintainer>
   </maintainers>
  <release>
-  <version>1.2.3</version>
-  <date>2006-01-18</date>
+  <version>1.2.4</version>
+  <date>2006-04-18</date>
   <license>MIT License</license>
   <state>stable</state>
-  <notes>- Upgraded to package.xml version 2 (via package2.xml).
-- Relicensed the package under the MIT license.
+  <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
   </notes>
   <deps>
    <dep type="php" rel="ge" version="4.0.4" optional="no"/>
@@ -42,6 +41,23 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
   </filelist>
  </release>
  <changelog>
+   <release>
+    <version>1.2.4</version>
+    <date>2006-04-18</date>
+    <license>MIT License</license>
+    <state>stable</state>
+    <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
+    </notes>
+   </release>
+   <release>
+    <version>1.2.3</version>
+    <date>2006-01-18</date>
+    <license>MIT License</license>
+    <state>stable</state>
+    <notes>- Upgraded to package.xml version 2 (via package2.xml).
+- Relicensed the package under the MIT license.
+    </notes>
+   </release>
    <release>
     <version>1.2.3</version>
     <date>2006-01-18</date>

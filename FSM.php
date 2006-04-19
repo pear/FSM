@@ -167,6 +167,25 @@ class FSM
     }
 
     /**
+     * This method adds an array of transitions.  Each transition is itself
+     * defined as an array of values which will be passed to addTransition()
+     * as parameters.
+     *
+     * @param   array   $transitions    An array of transitions.
+     *
+     * @see     addTransition
+     * @see     addTransitions
+     *
+     * @since 1.2.4
+     */
+    function addTransitionsArray($transitions)
+    {
+        foreach ($transitions as $transition) {
+            call_user_func_array(array($this, 'addTransition'), $transition);
+        }
+    }
+
+    /**
      * This method adds a new transition that associates:
      *
      *      (currentState) --> (nextState, action)
@@ -291,5 +310,3 @@ class FSM
         }
     }
 }
-
-?>

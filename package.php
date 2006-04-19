@@ -9,10 +9,9 @@ The FSM package provides a simple class that implements a Finite State Machine.
 In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).
 EOT;
 
-$version = '1.2.3';
+$version = '1.2.4';
 $notes = <<<EOT
-- Upgraded to package.xml version 2 (via package2.xml).
-- Relicensed the package under the MIT license.
+- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
 EOT;
 
 $package = new PEAR_PackageFileManager2();
