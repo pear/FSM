@@ -6,7 +6,7 @@ PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $desc = <<<EOT
 The FSM package provides a simple class that implements a Finite State Machine.
 
-In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).
+In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Pushdown Automaton (a finite state machine with memory).
 EOT;
 
 $version = '1.2.5';

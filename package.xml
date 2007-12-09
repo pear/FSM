@@ -8,7 +8,7 @@
  <summary>Finite State Machine</summary>
  <description>The FSM package provides a simple class that implements a Finite State Machine.
 
-In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).</description>
+In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Pushdown Automaton (a finite state machine with memory).</description>
  <lead>
   <name>Jon Parise</name>
   <user>jon</user>
@@ -16,7 +16,7 @@ In addition to maintaining state, this FSM also maintains a user-defined payload
   <active>yes</active>
  </lead>
  <date>2007-12-09</date>
- <time>15:22:48</time>
+ <time>15:26:19</time>
  <version>
   <release>1.2.5</release>
   <api>1.0.0</api>
