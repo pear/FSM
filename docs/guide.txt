@@ -17,14 +17,16 @@
 About the FSM Package
 =====================
 
-The FSM Package implements a `Finite State Machine`_.  In addition to
-maintaining state, this FSM also maintains a user-defined payload. therefore
-effectively making the machine a Push-Down Automata (a finite state machine
+The `FSM Package`_ implements a `Finite State Machine`_.  In addition to
+maintaining state, this FSM also manages a user-defined payload, therefore
+effectively making the machine a `Pushdown Automaton`_ (a finite state machine
 with memory).
 
 This code is based largely on Noah Spurrier's excellent `FSM Python class`_.
 
-.. _Finite State Machine: http://en.wikipedia.org/wiki/Finite_state_machine
+.. _FSM Package: http://pear.php.net/package/FSM
+.. _Finite State Machine: http://wikipedia.org/wiki/Finite_state_machine
+.. _Pushdown Automaton: http://wikipedia.org/wiki/Push-down_automata
 .. _FSM Python class: http://www.noah.org/python/FSM/
 
 
@@ -35,10 +37,10 @@ The first step in building a Finite State Machine involves listing the finite
 set of states.  Then, all of the permissible transitions between these states
 must be defined.  A symbol and an optional callback function are associated
 with each transition.  The input processing routine will attempt to match its
-current symbol against the list of registered transitions.  If it a transition
-from the current state using that symbol is found, the current state will be
-updated to the new state specified by the transition and, if one has been
-specified, the associated callback function will be invoked.
+current symbol against the list of registered transitions.  If a transition
+from the current state using that symbol is found, the machine will move to
+the new state specified by the transition and, if one has been specified, the
+associated callback function will be invoked.
 
 Creating A New FSM Object
 -------------------------
@@ -47,12 +49,14 @@ Start by including the FSM package in your script::
     require 'FSM.php';
 
 When constructing a new FSM object, you must specify the machine's initial
-state and provide a payload container.  The payload will be passed to all of
-the callback functions, allowing you to provide them with state information
-without (ab)using global variables.
+state and provide a payload variable.  The payload will be passed to all of
+the callback functions, supplying them with state information without
+(ab)using global variables.
 
 In this example, we pass an array representing a stack as the payload.  The
-machine's initial state is set to ``START``::
+machine's initial state is set to ``START``.
+
+::
 
     $stack = array();
     $fsm = new FSM('START', $stack);
@@ -62,7 +66,7 @@ Defining Transitions
 We'll need to define some transitions in order to make our machine useful.
 Let's assume our machine has two additional states: ``MIDDLE`` and ``END``.
 Here's how we would define transitions to move us from ``START`` to ``MIDDLE``
-to ``END``::
+and from ``MIDDLE`` to ``END``::
 
     function FirstCallback($symbol, $payload)
     {
@@ -77,12 +81,14 @@ to ``END``::
     $fsm->addTransition('FIRST', 'START', 'MIDDLE', 'FirstCallback');
     $fsm->addTransition('SECOND', 'MIDDLE', 'END', 'SecondCallback');
 
-Our machine is now aware of three states (``START``, ``MIDDLE``, ``END``) and
-two symbols (``FIRST``, ``SECOND``).  Two transitions (``START`` to
-``MIDDLE``, and ``MIDDLE`` to ``END``) have been defined and associated with
+Our machine is now aware of three states (``START``, ``MIDDLE``, and ``END``)
+and two symbols (``FIRST`` and ``SECOND``).  Two transitions (``START`` to
+``MIDDLE`` and ``MIDDLE`` to ``END``) have been defined and associated with
 callbacks.  The following code will process the symbols ``FIRST`` and
 ``SECOND`` and move us from our initial state (``START``) through the
-``MIDDLE`` state to the ``END`` state::
+``MIDDLE`` state to the ``END`` state.
+
+::
 
     $fsm->process('FIRST');
     $fsm->process('SECOND');
@@ -98,7 +104,9 @@ Setting Default Transitions
 Now we'll set up a default transition.  This transition will be used whenever
 the processing routine cannot find a better match for the current state and
 symbol.  For our example, we'll consider this an error and print a warning for
-the user::
+the user.
+
+::
 
     function ErrorCallback($symbol, $payload)
     {
@@ -115,6 +123,6 @@ Now let's process our symbols in an unexcepted order::
 Because the ``SECOND`` transition doesn't specify ``START`` as its initial
 state, the default transition will be used and the error callback will be
 invoked.  The ``FIRST`` transition will work as expected, however, because the
-machine will remain in the ``START`` state.
+machine will still be in the ``START`` state.
 
 .. vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab textwidth=78:
