@@ -12,6 +12,7 @@ EOT;
 $version = '1.2.5';
 $notes = <<<EOT
 - Updated the package to use package.xml 2.0 exclusively.
+- Cleaned up the user documentation a bit.
 EOT;
 
 $package = new PEAR_PackageFileManager2();
