@@ -1,127 +1,71 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.4.6">
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
  <name>FSM</name>
+ <channel>pear.php.net</channel>
  <summary>Finite State Machine</summary>
  <description>The FSM package provides a simple class that implements a Finite State Machine.
 
-In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).
- </description>
- <maintainers>
-  <maintainer>
-   <user>jon</user>
-   <name>Jon Parise</name>
-   <email>jon@php.net</email>
-   <role>lead</role>
-  </maintainer>
-  </maintainers>
- <release>
-  <version>1.2.4</version>
-  <date>2006-04-18</date>
-  <license>MIT License</license>
-  <state>stable</state>
-  <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
-  </notes>
-  <deps>
-   <dep type="php" rel="ge" version="4.0.4" optional="no"/>
-  </deps>
-  <filelist>
-   <dir name="/" baseinstalldir="/">
-    <dir name="docs">
-     <dir name="examples">
-      <file role="doc" name="rpn.php"/>
-     </dir> <!-- /docs/examples -->
-     <file role="doc" name="guide.txt"/>
-    </dir> <!-- /docs -->
-    <dir name="tests">
-     <file role="test" name="001.phpt"/>
-     <file role="test" name="addTransitionsArray.phpt"/>
-    </dir> <!-- /tests -->
-    <file role="php" name="FSM.php"/>
-   </dir> <!-- / -->
-  </filelist>
- </release>
+In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).</description>
+ <lead>
+  <name>Jon Parise</name>
+  <user>jon</user>
+  <email>jon@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2007-12-09</date>
+ <time>14:27:49</time>
+ <version>
+  <release>1.2.5</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/mit-license.php">MIT License</license>
+ <notes>- Updated the package to use package.xml 2.0 exclusively.</notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <dir name="docs">
+    <dir name="examples">
+     <file name="rpn.php" role="doc" />
+    </dir> <!-- /docs/examples -->
+    <file name="guide.txt" role="doc" />
+   </dir> <!-- /docs -->
+   <dir name="tests">
+    <file name="001.phpt" role="test" />
+    <file name="addTransitionsArray.phpt" role="test" />
+   </dir> <!-- /tests -->
+   <file name="FSM.php" role="php" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.0.4</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.3</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
  <changelog>
-   <release>
-    <version>1.2.4</version>
-    <date>2006-04-18</date>
-    <license>MIT License</license>
-    <state>stable</state>
-    <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
-    </notes>
-   </release>
-   <release>
-    <version>1.2.4</version>
-    <date>2006-04-18</date>
-    <license>MIT License</license>
-    <state>stable</state>
-    <notes>- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
-    </notes>
-   </release>
-   <release>
-    <version>1.2.3</version>
-    <date>2006-01-18</date>
-    <license>MIT License</license>
-    <state>stable</state>
-    <notes>- Upgraded to package.xml version 2 (via package2.xml).
-- Relicensed the package under the MIT license.
-    </notes>
-   </release>
-   <release>
-    <version>1.2.3</version>
-    <date>2006-01-18</date>
-    <license>MIT License</license>
-    <state>stable</state>
-    <notes>- Upgraded to package.xml version 2 (via package2.xml).
-- Relicensed the package under the MIT license.
-    </notes>
-   </release>
-   <release>
-    <version>1.2.3</version>
-    <date>2006-01-18</date>
-    <license>MIT License</license>
-    <state>stable</state>
-    <notes>- Upgraded to package.xml version 2 (via package2.xml).
-- Relicensed the package under the MIT license.
-    </notes>
-   </release>
-   <release>
-    <version>1.2.2</version>
-    <date>2005-01-08</date>
-    <license>PHP License</license>
-    <state>stable</state>
-    <notes>Small documentation and code cleanups. (Bugs 3014, 3015)
-setDefaultTransition() was incorrectly removing the transition if nextState was 0. (Bug 3130)
-    </notes>
-   </release>
-   <release>
-    <version>1.2.1</version>
-    <date>2003-10-03</date>
-    <license>PHP</license>
-    <state>stable</state>
-    <notes>Fixing another bug related to passing the payload by reference.
-    </notes>
-   </release>
-   <release>
-    <version>1.2.0</version>
-    <date>2003-09-30</date>
-    <state>stable</state>
-    <notes>Fixing the call-time pass-by-reference issues with Zend Engine 2.
-    </notes>
-   </release>
-   <release>
-    <version>1.1.0</version>
-    <date>2002-12-29</date>
-    <state>stable</state>
-    <notes>Callback functions may optionally return the name of a new state.
-    </notes>
-   </release>
-   <release>
-    <version>1.0.0</version>
-    <date>2002-11-09</date>
-    <state>stable</state>
-    <notes>- Initial release of the FSM package.
-    </notes>
-   </release>
+  <release>
+   <version>
+    <release>1.2.5</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-12-09</date>
+   <license uri="http://www.opensource.org/licenses/mit-license.php">MIT License</license>
+   <notes>- Updated the package to use package.xml 2.0 exclusively.</notes>
+  </release>
  </changelog>
 </package>

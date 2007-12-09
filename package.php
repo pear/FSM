@@ -9,9 +9,9 @@ The FSM package provides a simple class that implements a Finite State Machine.
 In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Push-Down Automata (a finite state machine with memory).
 EOT;
 
-$version = '1.2.4';
+$version = '1.2.5';
 $notes = <<<EOT
-- Added addTransitionsArray() for adding an array of transitions to the machine. (Request #7338)
+- Updated the package to use package.xml 2.0 exclusively.
 EOT;
 
 $package = new PEAR_PackageFileManager2();
@@ -21,7 +21,7 @@ $result = $package->setOptions(array(
     'changelogoldtonew' => false,
     'simpleoutput'		=> true,
     'baseinstalldir'    => '/',
-    'packagefile'       => 'package2.xml',
+    'packagefile'       => 'package.xml',
     'packagedirectory'  => '.'));
 
 if (PEAR::isError($result)) {
@@ -43,17 +43,14 @@ $package->setNotes($notes);
 $package->setPhpDep('4.0.4');
 $package->setPearinstallerDep('1.4.3');
 $package->addMaintainer('lead',  'jon', 'Jon Parise', 'jon@php.net');
-$package->addIgnore(array('package.php', 'phpdoc.sh', 'package.xml', 'package2.xml'));
+$package->addIgnore(array('package.php', 'phpdoc.sh', 'package.xml'));
 
 $package->generateContents();
-$package1 = &$package->exportCompatiblePackageFile1();
 
 if ($_SERVER['argv'][1] == 'commit') {
     $result = $package->writePackageFile();
-    $result = $package1->writePackageFile();
 } else {
     $result = $package->debugPackageFile();
-    $result = $package1->debugPackageFile();
 }
 
 if (PEAR::isError($result)) {
