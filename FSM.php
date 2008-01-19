@@ -1,7 +1,7 @@
 <?php
 /* vim: set expandtab softtabstop=4 tabstop=4 shiftwidth=4: */
-/*
- * Copyright (c) 2002-2006 Jon Parise <jon@php.net>
+/**
+ * Copyright (c) 2002-2008 Jon Parise <jon@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -22,6 +22,8 @@
  * IN THE SOFTWARE.
  *
  * $Id$
+ *
+ * @package FSM
  */
 
 /**
