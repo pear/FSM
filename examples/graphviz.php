@@ -6,7 +6,7 @@ require_once 'FSM/GraphViz.php';
 $payload = array();
 $fsm = new FSM('START', $payload);
 
-$converter = new FSM_GraphViz($fsm);
-$graph = $converter->export();
+$graphviz = new FSM_GraphViz($fsm);
+$graph = $graphviz->export();
 
 $graph->image('png');
