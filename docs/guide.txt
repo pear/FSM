@@ -42,7 +42,7 @@ from the current state using that symbol is found, the machine will move to
 the new state specified by the transition and, if one has been specified, the
 associated callback function will be invoked.
 
-Creating A New FSM Object
+Creating a New FSM Object
 -------------------------
 Start by including the FSM package in your script::
 
@@ -125,4 +125,60 @@ state, the default transition will be used and the error callback will be
 invoked.  The ``FIRST`` transition will work as expected, however, because the
 machine will still be in the ``START`` state.
 
-.. vim: tabstop=4 shiftwidth=4 softtabstop=4 expandtab textwidth=78:
+Plotting a State Machine
+========================
+
+The FSM package optionally supports the ability to plot a machine's states
+with the help of the `Image_GraphViz`_ package.  Doing so is as simple as
+creating a new ``FSM_GraphViz`` object using an existing state machine
+instance and then exporting the graph.
+
+::
+
+    require_once 'FSM/GraphViz.php';
+    $converter = new FSM_GraphViz($fsm);
+    $graph = $converter->export();
+
+The resulting graph object is an ``Image_GraphViz`` instance.  To export the
+graph as an image, use the ``image()`` method::
+
+    $graph->image('png');
+
+This will produce an image similar to the following:
+
+.. figure:: graphviz.png
+   :alt: Example State Machine Plot
+
+Consult the `Image_GraphViz documentation`_ for additional usage information.
+
+.. _Image_GraphViz: http://pear.php.net/package/Image_GraphViz
+.. _Image_GraphViz documentation: http://pear.php.net/package/Image_GraphViz/docs
+
+Development and Support
+=======================
+
+Reporting Problems and Suggestions
+----------------------------------
+If you run into a problem or would like to make a suggestion, please use the
+`PEAR Bug Tracker`_.  Feel free to contact me directly for other issues, but
+please try to use the bug tracker whenever possible so that others in the
+community will benefit from your feedback and my responses.
+
+- `Open Bugs`_
+- `Report a New Bug`_
+
+.. _PEAR Bug Tracker: http://pear.php.net/bugs/
+.. _Open Bugs: http://pear.php.net/package/FSM/bugs
+.. _Report a New Bug: http://pear.php.net/bugs/report.php?package=FSM
+
+Coming Soon
+-----------
+This section contains a list of "todo" items that will hopefully be addressed
+in future releases.
+
+- *No items at this time.*
+
+If you have feature suggestions, please submit them using the `PEAR Bug
+Tracker`_.
+
+.. vim: syntax=rst tabstop=4 shiftwidth=4 softtabstop=4 expandtab textwidth=78:
