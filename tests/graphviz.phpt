@@ -15,8 +15,8 @@ require_once 'FSM/GraphViz.php';
 $stack = array();
 $fsm = new FSM('START', $stack);
 
-$graphviz = new FSM_GraphViz($fsm);
-$graph = $graphviz->export();
+$converter = new FSM_GraphViz($fsm);
+$graph = $converter->export();
 
 echo $graph->parse();
 
