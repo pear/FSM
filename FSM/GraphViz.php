@@ -35,16 +35,18 @@ require_once 'FSM.php';
 require_once 'Image/GraphViz.php';
 
 /**
- * FSM <-> Image_GraphViz converter
+ * FSM to Image_GraphViz converter
  *
  * This class extends the FSM class to have access to private properties.
  * It is not intended to be used as a FSM instance.
  *
- * PHP 5+ is recommended to be able to handle action that return a new state
+ * PHP 5 or later is recommended to be able to handle action that return a new
+ * state.
  *
  * @package   FSM
  * @author    Philippe Jausions <jausions@php.net>
  * @copyright (c) 2007 by Philippe Jausions / 11abacus
+ * @since     1.3.0
  */
 class FSM_GraphViz extends FSM
 {
@@ -97,14 +99,14 @@ class FSM_GraphViz extends FSM
     /**
      * Converts an FSM to an instance of Image_GraphViz
      *
+     * @param string $name Name for the graph
      * @param boolean $strict Whether to collapse multiple edges between
      *                        same nodes.
-     * @param string $name Name for the graph
      *
      * @return Image_GraphViz instance or PEAR_Error on failure
      * @access public
      */
-    function &export($strict = true, $name = 'FSM')
+    function &export($name = 'FSM', $strict = true)
     {
         if (!is_a($this->_fsm, 'FSM')) {
             $error = PEAR::raiseError('Not a FSM instance');
