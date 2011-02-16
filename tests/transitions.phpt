@@ -26,17 +26,25 @@ function transition2($symbol, &$payload)
 $stack = array();
 
 $fsm = new FSM('START', $stack);
+echo $fsm->getCurrentState() . "\n";
+
 $fsm->setDefaultTransition('START', 'defaultTransition');
 $fsm->addTransition('TRANS1', 'START', 'FINISH', 'transition1');
 $fsm->addTransition('TRANS2', 'FINISH', 'START', 'transition2');
 
 $fsm->process('TRANS2');
+echo $fsm->getCurrentState() . "\n";
+
 $fsm->process('TRANS1');
+echo $fsm->getCurrentState() . "\n";
 
 var_dump($stack);
 --EXPECT--
+START
 Default
+START
 Transition 1
+FINISH
 array(2) {
   [0]=>
   string(6) "TRANS2"

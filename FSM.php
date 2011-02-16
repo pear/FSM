@@ -1,7 +1,7 @@
 <?php
 /* vim: set expandtab softtabstop=4 tabstop=4 shiftwidth=4: */
 /**
- * Copyright (c) 2002-2008 Jon Parise <jon@php.net>
+ * Copyright (c) 2002-2011 Jon Parise <jon@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -118,6 +118,18 @@ class FSM
         $this->_initialState = $initialState;
         $this->_currentState = $initialState;
         $this->_payload = &$payload;
+    }
+
+    /**
+     * This method returns the machine's current state.
+     *
+     * @return  string  The machine's current state.
+     *
+     * @since 1.3.1
+     */
+    function getCurrentState()
+    {
+        return $this->_currentState;
     }
 
     /**

@@ -9,15 +9,15 @@ The FSM package provides a simple class that implements a Finite State Machine.
 In addition to maintaining state, this FSM also maintains a user-defined payload, therefore effectively making the machine a Pushdown Automaton (a finite state machine with memory).
 EOT;
 
-$version = '1.3.0';
+$version = '1.3.1';
 $notes = <<<EOT
-Added a GraphViz-based renderer for plotting a machine's states. (Request 12475)
+Added FSM::getCurrentState(), for returning the machine's current state.
 EOT;
 
 $package = new PEAR_PackageFileManager2();
 
 $result = $package->setOptions(array(
-    'filelistgenerator' => 'cvs',
+    'filelistgenerator' => 'svn',
     'changelogoldtonew' => false,
     'simpleoutput'		=> true,
     'baseinstalldir'    => '/',
