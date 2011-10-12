@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.8.1: http://docutils.sourceforge.net/" />
+<title>The FSM Package</title>
+<style type="text/css">
+
+body {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+	letter-spacing: 0.01em;
+	line-height: 1.5em;
+	text-align: justify;
+	margin: 0 auto;
+	width: 48em;
+}
+
+a:link, a:visited {
+	color: #00c;
+	padding-bottom: 0;
+	text-decoration: none;
+	border-bottom: 1px solid #dbd5c5;
+}
+
+a:hover {
+	padding-bottom: 0;
+	border-bottom: 2px solid #dbd5c5;
+}
+
+h1, h2, h3 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: normal;
+	line-height: normal;
+}
+
+h1 {
+	font-size: 2.1em;
+	letter-spacing: -0.02em;
+	margin-top: 30px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.6em;
+	font-style: italic;
+	margin: 30px 0 10px 0;
+}
+
+h3 {
+	font-size: 1.3em;
+	font-style: italic;
+	margin-top: 20px;
+}
+
+li {
+	line-height: 135%;
+}
+
+ul, ol {
+	margin: 0 0 1em 2em;
+	padding: 0 0 0 1em;
+}
+
+hr {
+	background-color: #ccc;
+	border: 0px none;
+	color: #eee;
+	height: 1px;
+	margin: 30px 0px;
+}
+
+blockquote, pre {
+	background-color: #f9f9f9;
+	border: 1px solid #eee;
+	border-left: 2px solid #ccc;
+	padding: 1em;
+}
+
+blockquote {
+	color: #666;
+	line-height: 1.3em;
+}
+
+pre {
+	line-height: normal;
+	overflow: auto;
+}
+
+pre.code-block {
+	padding-bottom: 0;
+}
+
+tt, pre, code, samp, kbd {
+	color: #333;
+	font-family: Consolas, 'Lucida Console', monospace;
+	font-size: 13px;
+}
+
+label em {
+	font-weight: normal;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+.code-block .err { border: 1px solid #FF0000 } /* Error */
+.code-block .k,.kn { color: #369 } /* Keywords */
+.code-block .c,.cm,.cp,.c1 { color: #666; font-style: italic } /* Comments */
+.code-block .n { color: #000 } /* Names */
+.code-block .p { color: #000 } /* Punctuation */
+.code-block .nc,.nf,.nn { color: #333; font-weight: bold } /* Symbol Names */
+.code-block .s { color: #933 } /* Literal.String */
+.code-block .sd { color: #666 } /* Literal.String.Doc */
+
+</style>
+</head>
+<body>
+<div class="document" id="the-fsm-package">
+<h1 class="title">The FSM Package</h1>
+<h2 class="subtitle" id="user-documentation">User Documentation</h2>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Jon Parise</td>
+</tr>
+<tr class="field"><th class="field-name">Contact:</th><td class="field-body"><a class="reference external" href="mailto:jon&#37;&#52;&#48;php&#46;net">jon<span>&#64;</span>php<span>&#46;</span>net</a></td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#about-the-fsm-package" id="id1">1&nbsp;&nbsp;&nbsp;About the FSM Package</a></li>
+<li><a class="reference internal" href="#building-a-finite-state-machine" id="id2">2&nbsp;&nbsp;&nbsp;Building a Finite State Machine</a><ul class="auto-toc">
+<li><a class="reference internal" href="#creating-a-new-fsm-object" id="id3">2.1&nbsp;&nbsp;&nbsp;Creating a New FSM Object</a></li>
+<li><a class="reference internal" href="#defining-transitions" id="id4">2.2&nbsp;&nbsp;&nbsp;Defining Transitions</a></li>
+<li><a class="reference internal" href="#setting-default-transitions" id="id5">2.3&nbsp;&nbsp;&nbsp;Setting Default Transitions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#plotting-a-state-machine" id="id6">3&nbsp;&nbsp;&nbsp;Plotting a State Machine</a></li>
+<li><a class="reference internal" href="#development-and-support" id="id7">4&nbsp;&nbsp;&nbsp;Development and Support</a><ul class="auto-toc">
+<li><a class="reference internal" href="#reporting-problems-and-suggestions" id="id8">4.1&nbsp;&nbsp;&nbsp;Reporting Problems and Suggestions</a></li>
+<li><a class="reference internal" href="#coming-soon" id="id9">4.2&nbsp;&nbsp;&nbsp;Coming Soon</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="about-the-fsm-package">
+<h2>1&nbsp;&nbsp;&nbsp;About the FSM Package</h2>
+<p>The <a class="reference external" href="http://pear.php.net/package/FSM">FSM Package</a> implements a <a class="reference external" href="http://wikipedia.org/wiki/Finite_state_machine">Finite State Machine</a>.  In addition to
+maintaining state, this FSM also manages a user-defined payload, therefore
+effectively making the machine a <a class="reference external" href="http://wikipedia.org/wiki/Push-down_automata">Pushdown Automaton</a> (a finite state machine
+with memory).</p>
+<p>This code is based largely on Noah Spurrier's excellent <a class="reference external" href="http://www.noah.org/python/FSM/">FSM Python class</a>.</p>
+</div>
+<div class="section" id="building-a-finite-state-machine">
+<h2>2&nbsp;&nbsp;&nbsp;Building a Finite State Machine</h2>
+<p>The first step in building a Finite State Machine involves listing the finite
+set of states.  Then, all of the permissible transitions between these states
+must be defined.  A symbol and an optional callback function are associated
+with each transition.  The input processing routine will attempt to match its
+current symbol against the list of registered transitions.  If a transition
+from the current state using that symbol is found, the machine will move to
+the new state specified by the transition and, if one has been specified, the
+associated callback function will be invoked.</p>
+<div class="section" id="creating-a-new-fsm-object">
+<h3>2.1&nbsp;&nbsp;&nbsp;Creating a New FSM Object</h3>
+<p>Start by including the FSM package in your script:</p>
+<pre class="literal-block">
+require 'FSM.php';
+</pre>
+<p>When constructing a new FSM object, you must specify the machine's initial
+state and provide a payload variable.  The payload will be passed to all of
+the callback functions, supplying them with state information without
+(ab)using global variables.</p>
+<p>In this example, we pass an array representing a stack as the payload.  The
+machine's initial state is set to <tt class="docutils literal">START</tt>.</p>
+<pre class="literal-block">
+$stack = array();
+$fsm = new FSM('START', $stack);
+</pre>
+</div>
+<div class="section" id="defining-transitions">
+<h3>2.2&nbsp;&nbsp;&nbsp;Defining Transitions</h3>
+<p>We'll need to define some transitions in order to make our machine useful.
+Let's assume our machine has two additional states: <tt class="docutils literal">MIDDLE</tt> and <tt class="docutils literal">END</tt>.
+Here's how we would define transitions to move us from <tt class="docutils literal">START</tt> to <tt class="docutils literal">MIDDLE</tt>
+and from <tt class="docutils literal">MIDDLE</tt> to <tt class="docutils literal">END</tt>:</p>
+<pre class="literal-block">
+function FirstCallback($symbol, $payload)
+{
+    echo &quot;First Transition\n&quot;;
+}
+
+function SecondCallback($symbol, $payload)
+{
+    echo &quot;Second Transition\n&quot;;
+}
+
+$fsm-&gt;addTransition('FIRST', 'START', 'MIDDLE', 'FirstCallback');
+$fsm-&gt;addTransition('SECOND', 'MIDDLE', 'END', 'SecondCallback');
+</pre>
+<p>Our machine is now aware of three states (<tt class="docutils literal">START</tt>, <tt class="docutils literal">MIDDLE</tt>, and <tt class="docutils literal">END</tt>)
+and two symbols (<tt class="docutils literal">FIRST</tt> and <tt class="docutils literal">SECOND</tt>).  Two transitions (<tt class="docutils literal">START</tt> to
+<tt class="docutils literal">MIDDLE</tt> and <tt class="docutils literal">MIDDLE</tt> to <tt class="docutils literal">END</tt>) have been defined and associated with
+callbacks.  The following code will process the symbols <tt class="docutils literal">FIRST</tt> and
+<tt class="docutils literal">SECOND</tt> and move us from our initial state (<tt class="docutils literal">START</tt>) through the
+<tt class="docutils literal">MIDDLE</tt> state to the <tt class="docutils literal">END</tt> state.</p>
+<pre class="literal-block">
+$fsm-&gt;process('FIRST');
+$fsm-&gt;process('SECOND');
+</pre>
+<p>The processing routine will invoke our two callbacks along the way, as well,
+resulting in the following being printed:</p>
+<pre class="literal-block">
+First Transition
+Second Transition
+</pre>
+</div>
+<div class="section" id="setting-default-transitions">
+<h3>2.3&nbsp;&nbsp;&nbsp;Setting Default Transitions</h3>
+<p>Now we'll set up a default transition.  This transition will be used whenever
+the processing routine cannot find a better match for the current state and
+symbol.  For our example, we'll consider this an error and print a warning for
+the user.</p>
+<pre class="literal-block">
+function ErrorCallback($symbol, $payload)
+{
+    echo &quot;This symbol does not compute: $symbol\n&quot;;
+}
+
+$fsm-&gt;setDefaultTransition('START', 'ErrorCallback');
+</pre>
+<p>Now let's process our symbols in an unexcepted order:</p>
+<pre class="literal-block">
+$fsm-&gt;process('SECOND');
+$fsm-&gt;process('FIRST');
+</pre>
+<p>Because the <tt class="docutils literal">SECOND</tt> transition doesn't specify <tt class="docutils literal">START</tt> as its initial
+state, the default transition will be used and the error callback will be
+invoked.  The <tt class="docutils literal">FIRST</tt> transition will work as expected, however, because the
+machine will still be in the <tt class="docutils literal">START</tt> state.</p>
+</div>
+</div>
+<div class="section" id="plotting-a-state-machine">
+<h2>3&nbsp;&nbsp;&nbsp;Plotting a State Machine</h2>
+<p>The FSM package optionally supports the ability to plot a machine's states
+with the help of the <a class="reference external" href="http://pear.php.net/package/Image_GraphViz">Image_GraphViz</a> package.  Doing so is as simple as
+creating a new <tt class="docutils literal">FSM_GraphViz</tt> object using an existing state machine
+instance and then exporting the graph.</p>
+<pre class="literal-block">
+require_once 'FSM/GraphViz.php';
+$converter = new FSM_GraphViz($fsm);
+$graph = $converter-&gt;export();
+</pre>
+<p>The resulting graph object is an <tt class="docutils literal">Image_GraphViz</tt> instance.  To export the
+graph as an image, use the <tt class="docutils literal">image()</tt> method:</p>
+<pre class="literal-block">
+$graph-&gt;image('png');
+</pre>
+<p>This will produce an image similar to the following:</p>
+<div class="figure">
+<img alt="Example State Machine Plot" src="graphviz.png" />
+</div>
+<p>Consult the <a class="reference external" href="http://pear.php.net/package/Image_GraphViz/docs">Image_GraphViz documentation</a> for additional usage information.</p>
+</div>
+<div class="section" id="development-and-support">
+<h2>4&nbsp;&nbsp;&nbsp;Development and Support</h2>
+<div class="section" id="reporting-problems-and-suggestions">
+<h3>4.1&nbsp;&nbsp;&nbsp;Reporting Problems and Suggestions</h3>
+<p>If you run into a problem or would like to make a suggestion, please use the
+<a class="reference external" href="http://pear.php.net/bugs/">PEAR Bug Tracker</a>.  Feel free to contact me directly for other issues, but
+please try to use the bug tracker whenever possible so that others in the
+community will benefit from your feedback and my responses.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://pear.php.net/package/FSM/bugs">Open Bugs</a></li>
+<li><a class="reference external" href="http://pear.php.net/bugs/report.php?package=FSM">Report a New Bug</a></li>
+</ul>
+</div>
+<div class="section" id="coming-soon">
+<h3>4.2&nbsp;&nbsp;&nbsp;Coming Soon</h3>
+<p>This section contains a list of &quot;todo&quot; items that will hopefully be addressed
+in future releases.</p>
+<ul class="simple">
+<li><em>No items at this time.</em></li>
+</ul>
+<p>If you have feature suggestions, please submit them using the <a class="reference external" href="http://pear.php.net/bugs/">PEAR Bug
+Tracker</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
