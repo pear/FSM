@@ -170,7 +170,7 @@ class FSM
      * @throws Exception if the state is not defined
      * @since 1.4
      */
-    public function checkIfStateIsDefined($state){
+    private function _hasState($state){
         if (empty($state)) {
             throw new Exception('State name cannot be empty');
         }
@@ -205,7 +205,7 @@ class FSM
      */
     public function setCurrentState($state)
     {
-        if ($this->checkIfStateIsDefined($state)) {
+        if ($this->_hasState($state)) {
             $this->_currentState = $state;
         }
     }
@@ -238,7 +238,7 @@ class FSM
      * will ignore the action and just set the next state.
      * 
      * This method also will check if the source and target state exists inside the 
-     * machine using the $_states array
+     * machine
      *
      * @param   string  $transition     The input transition.
      * @param   string  $state          This transition's starting state.
@@ -250,7 +250,7 @@ class FSM
      */
     public function addTransition($transition, $state, $nextState, $action = null)
     {
-        if ($this->checkIfStateIsDefined($state) && $this->checkIfStateIsDefined($nextState)) {
+        if ($this->_hasState($state) && $this->_hasState($nextState)) {
             $this->_transitions["$transition,$state"] = array($nextState, $action);
         }
     }
@@ -312,7 +312,7 @@ class FSM
      */
     public function addTransitionAny($state, $nextState, $action = null)
     {
-        if ($this->checkIfStateIsDefined($state) && $this->checkIfStateIsDefined($nextState)) {
+        if ($this->_hasState($state) && $this->_hasState($nextState)) {
             $this->_transitionsAny[$state] = array($nextState, $action);
         }
     }
@@ -334,7 +334,7 @@ class FSM
         if (is_null($nextState)) {
             $this->_defaultTransition = null;
         }else{
-            if ($this->checkIfStateIsDefined($nextState)) {
+            if ($this->_hasState($nextState)) {
                 $this->_defaultTransition = array($nextState, $action);
             }
         }
