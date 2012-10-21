@@ -25,13 +25,12 @@
  * @author    Philippe Jausions <jausions@php.net>
  * @copyright 2007 Philippe Jausions / 11abacus
  * @license   http://www.11abacus.com/license/NewBSD.php  New BSD License
- * @version   CVS: $Id$
+ * @version   CVS: $Id: GraphViz.php 252630 2008-02-10 22:07:09Z jon $
  */
 
 /**
  * Requires PEAR packages
  */
-require_once 'FSM.php';
 require_once 'Image/GraphViz.php';
 
 /**
@@ -48,7 +47,7 @@ require_once 'Image/GraphViz.php';
  * @copyright (c) 2007 by Philippe Jausions / 11abacus
  * @since     1.3.0
  */
-class FSM_GraphViz extends FSM
+class FSM_GraphViz
 {
     /**
      * Machine instance
@@ -56,16 +55,16 @@ class FSM_GraphViz extends FSM
      * @var FSM
      * @access protected
      */
-    var $_fsm;
-
+    private $_fsm;
+    
     /**
      * Action name callback
      *
      * @var string
      * @access protected
      */
-    var $_actionNameCallback;
-
+    private $_actionNameCallback;
+    
     /**
      * Constructor
      *
@@ -73,12 +72,13 @@ class FSM_GraphViz extends FSM
      *
      * @access public
      */
-    function FSM_GraphViz(&$machine)
+    public function __construct(&$machine)
     {
         $this->_fsm =& $machine;
+        $this->_fsmReflection = new ReflectionClass($machine);
         $this->_actionNameCallback = array(&$this, '_getActionName');
     }
-
+    
     /**
      * Sets the callback for the action name
      *
@@ -87,7 +87,7 @@ class FSM_GraphViz extends FSM
      * @return boolean TRUE on success, PEAR_Error on error
      * @access public
      */
-    function setActionNameCallback($callback)
+    public function setActionNameCallback($callback)
     {
         if (!is_callable($callback)) {
             return PEAR::raiseError('Not a valid callback');
@@ -95,7 +95,19 @@ class FSM_GraphViz extends FSM
         $this->_actionNameCallback = $callback;
         return true;
     }
-
+    
+    /**
+     * Get the value of a private or protected property on the machine
+     *
+     * @param string $property 
+     * @return mixed
+     */
+    private function _getPrivateOrProtectedPropertyValue($property){
+        $value = $this->_fsmReflection->getProperty($property);
+        $value->setAccessible(TRUE);
+        return $value->getValue($this->_fsm);
+    }
+    
     /**
      * Converts an FSM to an instance of Image_GraphViz
      *
@@ -106,31 +118,35 @@ class FSM_GraphViz extends FSM
      * @return Image_GraphViz instance or PEAR_Error on failure
      * @access public
      */
-    function &export($name = 'FSM', $strict = true)
+    public function &export($name = 'FSM', $strict = true)
     {
-        if (!is_a($this->_fsm, 'FSM')) {
+        if ($this->_fsmReflection->getName() != 'FSM') {
             $error = PEAR::raiseError('Not a FSM instance');
             return $error;
         }
-
+        
         $g = new Image_GraphViz(true, null, $name, $strict);
-
+        
+        $initialState = $this->_getPrivateOrProtectedPropertyValue('_initialState');
+        
         // Initial state
         $attr = array('shape' => 'invhouse');
-        $g->addNode($this->_fsm->_initialState, $attr);
-        $nodes = array($this->_fsm->_initialState => $this->_fsm->_initialState);
-
-        $_t = '_transitions';
-        do {
-            foreach ($this->_fsm->$_t as $input => $t) {
-                if ($_t == '_transitions') {
+        $g->addNode($initialState, $attr);
+        $nodes = array($initialState => $initialState);
+        
+        $transitions = $this->_getPrivateOrProtectedPropertyValue('_transitions');
+        $transitionsAny = $this->_getPrivateOrProtectedPropertyValue('_transitionsAny');
+        
+        foreach (compact('transitions', 'transitionsAny') as $index => $t) {
+            foreach ($t as $input => $transition) {
+                if ($index == 'transitions') {
                     list($symbol, $state) = explode(',', $input, 2);
                 } else {
                     $state = $input;
                     $symbol = '';
                 }
-                list($nextState, $action) = $t;
-
+                list($nextState, $action) = $transition;
+                
                 if (!array_key_exists($nextState, $nodes)) {
                     $g->addNode($nextState);
                     $nodes[$nextState] = $nextState;
@@ -139,38 +155,33 @@ class FSM_GraphViz extends FSM
                     $g->addNode($state);
                     $nodes[$state] = $state;
                 }
-
+                
                 if (strlen($symbol)) {
-                    $g->addEdge(array($state => $nextState),
-                                array('label' => $symbol));
+                    $g->addEdge(array($state => $nextState), array('label' => $symbol));
                 } else {
                     $g->addEdge(array($state => $nextState));
                 }
-
+                
                 $this->_addAction($g, $nodes, $action, $nextState);
             }
-            if ($_t == '_transitions') {
-                $_t = '_transitionsAny';
-            } else {
-                $_t = false;
-            }
-        } while ($_t);
-
+        }
+        
         // Add default transition
-        if ($this->_defaultTransition) {
-            list($nextState, $action) = $this->_defaultTransition;
-
+        $defaultTransition = $this->_getPrivateOrProtectedPropertyValue('_defaultTransition');
+        if ($defaultTransition) {
+            list($nextState, $action) = $defaultTransition;
+            
             if (!array_key_exists($nextState, $nodes)) {
                 $g->addNode($nextState, array('style' => 'dotted'));
                 $nodes[$nextState] = $nextState;
             }
-
+            
             $this->_addAction($g, $nodes, $action, $nextState, true);
         }
-
+        
         return $g;
     }
-
+    
     /**
      * Adds an action into the graph
      *
@@ -184,7 +195,7 @@ class FSM_GraphViz extends FSM
      * @return void
      * @access protected
      */
-    function _addAction(&$graph, &$nodes, $action, $state, $default = false)
+    protected function _addAction(&$graph, &$nodes, $action, $state, $default = false)
     {
         $actionName = call_user_func($this->_actionNameCallback, $action);
         if (strlen($actionName)) {
@@ -197,9 +208,9 @@ class FSM_GraphViz extends FSM
                                 array_merge($attr, array('shape' => 'box')));
                 $nodes[$actionName] = $actionName;
             }
-
+            
             $graph->addEdge(array($state => $actionName), $attr);
-
+            
             // Any new states out of action?
             $states = $this->_getStatesReturnedByAction($action);
             foreach ($states as $state) {
@@ -211,7 +222,7 @@ class FSM_GraphViz extends FSM
             }
         }
     }
-
+    
     /**
      * Returns an symbol-node name
      *
@@ -221,11 +232,11 @@ class FSM_GraphViz extends FSM
      * @return string
      * @access protected
      */
-    function _getSymbolName($symbol, $state)
+    private function _getSymbolName($symbol, $state)
     {
         return $symbol.', '.$state;
     }
-
+    
     /**
      * Returns an action as string
      *
@@ -234,7 +245,7 @@ class FSM_GraphViz extends FSM
      * @return string
      * @access protected
      */
-    function _getActionName($callback)
+    private function _getActionName($callback)
     {
         if (!is_callable($callback)) {
             return null;
@@ -247,7 +258,7 @@ class FSM_GraphViz extends FSM
         }
         return $callback[0].'::'.$callback[1].'()';
     }
-
+    
     /**
      * Analyzes callback for possible new state(s) returned
      *
@@ -286,44 +297,44 @@ class FSM_GraphViz extends FSM
      * @return array a list of possible new states returned by the callback
      * @access protected
      */
-    function _getStatesReturnedByAction($callback)
+    private function _getStatesReturnedByAction($callback)
     {
         if (version_compare(PHP_VERSION, '5.1.0') < 0
             || !is_callable($callback)) {
             return array();
         }
-
+        
         if (!is_array($callback)) {
             $reflector = new ReflectionFunction($callback);
         } else {
             $reflector = new ReflectionMethod($callback[0], $callback[1]);
         }
-
+        
         $doc = $reflector->getDocComment();
-
+        
         // We're only interested in the docBlock from @return and on
         $returnPos = strpos($doc, '* @return');
         if ($returnPos === false) {
             return array();
         }
         $returnDoc = trim(substr($doc, $returnPos + 9));
-
+        
         // Returning a string (i.e. new state name)?
         if (strncasecmp($returnDoc, 'string', 6) != 0) {
             return array();
         }
-
+        
         // Get the list of possible new states
         $length = strpos($returnDoc, '* @');
         if (!$length) {
             $length = strlen($returnDoc);
         }
         $listDoc = substr($returnDoc, 0, $length);
-
+        
         if (!preg_match_all('~<li>([^\s<]+?).*</li>~Uis', $listDoc, $list)) {
             return array();
         }
-
+        
         return $list[1];
     }
 }
