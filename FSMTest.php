@@ -54,35 +54,32 @@ class FSMTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers FSM::checkIfStateIsDefined
-     * @expectedException Exception
+     * @covers FSM::hasState
      */
-    public function testCheckIfStateIsDefined()
+    public function testhasState()
     {
         $state1 = 'S1';
         $state2 = 'S2';
         
         $this->object->addState($state1);
-        $this->assertTrue($this->object->checkIfStateIsDefined($state1));
-        
-        $this->setExpectedException('Exception');
-        $this->object->checkIfStateIsDefined($state2);
+        $this->assertTrue($this->object->hasState($state1));
+        $this->assertFalse($this->object->hasState($state2));
     }
 
     /**
-     * @covers FSM::checkIfStateIsDefined
+     * @covers FSM::hasState
      * @expectedException Exception
      */
-    public function testCheckIfStateIsDefinedNull()
+    public function testhasStateNull()
     {
         $state1 = 'S1';
         $state2 = 'S2';
         
         $this->object->addState($state1);
-        $this->assertTrue($this->object->checkIfStateIsDefined($state1));
+        $this->assertTrue($this->object->hasState($state1));
         
         $this->setExpectedException('Exception');
-        $this->object->checkIfStateIsDefined(NULL);
+        $this->object->hasState(NULL);
     }
 
     /**
@@ -493,7 +490,7 @@ class FSMTest extends PHPUnit_Framework_TestCase
         
         $this->assertFalse(file_exists($filename));
         
-        $this->object->export2Png($filename, 'images/gree-logo.png');
+        $this->object->export2Png($filename, 'images/test.png');
         $this->assertTrue(file_exists($filename));
         $this->assertNotEmpty(file_get_contents($filename));
         

@@ -166,23 +166,16 @@ class FSM
      * Checks if the given state is defined in the state machine
      *
      * @param string $state 
-     * @return mixed TRUE|Exception
+     * @return boolean
      * @throws Exception if the state is not defined
      * @since 1.4
      */
-    private function _hasState($state){
+    public function hasState($state){
         if (empty($state)) {
             throw new Exception('State name cannot be empty');
         }
         
-        if (!in_array($state, $this->_states)) {
-            throw new Exception(sprintf(
-                'State not found. Please add %s as state using addState() or addStates()', 
-                $state
-            ));
-        }
-        
-        return TRUE;
+        return in_array($state, $this->_states);
     }
     
     /**
@@ -205,7 +198,7 @@ class FSM
      */
     public function setCurrentState($state)
     {
-        if ($this->_hasState($state)) {
+        if ($this->hasState($state)) {
             $this->_currentState = $state;
         }
     }
@@ -250,7 +243,7 @@ class FSM
      */
     public function addTransition($transition, $state, $nextState, $action = null)
     {
-        if ($this->_hasState($state) && $this->_hasState($nextState)) {
+        if ($this->hasState($state) && $this->hasState($nextState)) {
             $this->_transitions["$transition,$state"] = array($nextState, $action);
         }
     }
@@ -312,7 +305,7 @@ class FSM
      */
     public function addTransitionAny($state, $nextState, $action = null)
     {
-        if ($this->_hasState($state) && $this->_hasState($nextState)) {
+        if ($this->hasState($state) && $this->hasState($nextState)) {
             $this->_transitionsAny[$state] = array($nextState, $action);
         }
     }
@@ -334,7 +327,7 @@ class FSM
         if (is_null($nextState)) {
             $this->_defaultTransition = null;
         }else{
-            if ($this->_hasState($nextState)) {
+            if ($this->hasState($nextState)) {
                 $this->_defaultTransition = array($nextState, $action);
             }
         }
