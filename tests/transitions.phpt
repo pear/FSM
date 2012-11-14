@@ -34,17 +34,21 @@ $fsm->addTransition('TRANS2', 'FINISH', 'START', 'transition2');
 
 $fsm->process('TRANS2');
 echo $fsm->getCurrentState() . "\n";
+echo $fsm->getPreviousState() . "\n";
 
 $fsm->process('TRANS1');
 echo $fsm->getCurrentState() . "\n";
+echo $fsm->getPreviousState() . "\n";
 
 var_dump($stack);
 --EXPECT--
 START
 Default
 START
+START
 Transition 1
 FINISH
+START
 array(2) {
   [0]=>
   string(6) "TRANS2"

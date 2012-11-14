@@ -57,6 +57,15 @@ class FSM
     var $_initialState = '';
 
     /**
+     * Contains the previous state of the machine.
+     *
+     * @var string
+     * @see $_initialState
+     * @access private
+     */
+    var $_previousState = '';
+
+    /**
      * Contains the current state of the machine.
      *
      * @var string
@@ -121,6 +130,18 @@ class FSM
     }
 
     /**
+     * This method returns the machine's previous state.
+     *
+     * @return  string  The machine's previous state.
+     *
+     * @since 1.3.2
+     */
+    function getPreviousState()
+    {
+        return $this->_previousState;
+    }
+
+    /**
      * This method returns the machine's current state.
      *
      * @return  string  The machine's current state.
@@ -138,6 +159,7 @@ class FSM
      */
     function reset()
     {
+        $this->_previousState = $this->_currentState;
         $this->_currentState = $this->_initialState;
     }
 
@@ -297,6 +319,7 @@ class FSM
         }
 
         /* Update the current state to this transition's exit state. */
+        $this->_previousState = $this->_currentState;        
         $this->_currentState = $transition[0];
 
         /* If an action for this transition has been specified, execute it. */
