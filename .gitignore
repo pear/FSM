@@ -1,0 +1,6 @@
+# /tests/
+/tests/*.diff
+/tests/*.exp
+/tests/*.log
+/tests/*.out
+/tests/*.php
