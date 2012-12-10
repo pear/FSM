@@ -144,7 +144,7 @@ graph as an image, use the ``image()`` method::
 
 This will produce an image similar to the following:
 
-.. figure:: graphviz.png
+.. figure:: https://raw.github.com/pear/FSM/master/docs/graphviz.png
    :alt: Example State Machine Plot
 
 Consult the `Image_GraphViz documentation`_ for additional usage information.
