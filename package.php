@@ -43,7 +43,7 @@ $package->setNotes($notes);
 $package->setPhpDep('4.0.4');
 $package->setPearinstallerDep('1.4.3');
 $package->addMaintainer('lead',  'jon', 'Jon Parise', 'jon@php.net');
-$package->addIgnore(array('package.php', 'phpdoc.sh', 'package.xml'));
+$package->addIgnore(array('.gitignore', 'README.rst', 'package.php', 'phpdoc.sh', 'package.xml'));
 $package->addPackageDepWithChannel('optional', 'Image_GraphViz', 'pear.php.net');
 
 $package->generateContents();
