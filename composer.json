@@ -3,6 +3,7 @@
         {
             "email": "jon@php.net",
             "name": "Jon Parise",
+            "homepage": "http://www.indelible.org",
             "role": "Lead"
         }
     ],
@@ -11,12 +12,13 @@
             "FSM": "./"
         }
     },
-    "description": "More info available on: http://pear.php.net/package/FSM",
+    "description": "Finite State Machine",
     "include-path": [
         "./"
     ],
     "license": "MIT License",
     "name": "pear/fsm",
+    "homepage": "http://pear.github.io/FSM/",
     "support": {
         "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=FSM",
         "source": "https://github.com/pear/FSM"
