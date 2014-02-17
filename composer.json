@@ -27,5 +27,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*"
+    },
+    "suggest": {
+        "pear/image_graphviz": "Install optionally via your project's composer.json"
     }
 }
