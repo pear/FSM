@@ -4,3 +4,8 @@
 /tests/*.log
 /tests/*.out
 /tests/*.php
+
+# composer related
+composer.lock
+composer.phar
+vendor
