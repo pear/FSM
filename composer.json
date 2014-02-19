@@ -20,7 +20,7 @@
     "name": "pear/fsm",
     "homepage": "http://pear.github.io/FSM/",
     "support": {
-        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=FSM",
+        "issues": "https://github.com/pear/FSM/issues",
         "source": "https://github.com/pear/FSM"
     },
     "type": "library",
