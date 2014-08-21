@@ -19,9 +19,6 @@
     "license": "MIT License",
     "name": "hut6/fsm",
     "type": "library",
-    "require": {
-        "pear/pear_exception": "dev-master"
-    },
     "require-dev": {
         "phpunit/phpunit": "*"
     },
