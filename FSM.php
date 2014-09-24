@@ -171,11 +171,11 @@ class FSM
      * The action may be set to NULL, in which case the processing routine
      * will ignore the action and just set the next state.
      *
-     * @param   string  $symbol         The input symbol.
-     * @param   string  $state          This transition's starting state.
-     * @param   string  $nextState      This transition's ending state.
-     * @param   string  $action         The name of the function to invoke
-     *                                  when this transition occurs.
+     * @param   string    $symbol         The input symbol.
+     * @param   string    $state          This transition's starting state.
+     * @param   string    $nextState      This transition's ending state.
+     * @param   callable  $action         The name of the function to invoke
+     *                                    when this transition occurs.
      *
      * @see     addTransitions()
      */
@@ -187,11 +187,11 @@ class FSM
     /**
      * This method adds the same transition for multiple different symbols.
      *
-     * @param   array   $symbols        A list of input symbols.
-     * @param   string  $state          This transition's starting state.
-     * @param   string  $nextState      This transition's ending state.
-     * @param   string  $action         The name of the function to invoke
-     *                                  when this transition occurs.
+     * @param   array     $symbols        A list of input symbols.
+     * @param   string    $state          This transition's starting state.
+     * @param   string    $nextState      This transition's ending state.
+     * @param   callable  $action         The name of the function to invoke
+     *                                    when this transition occurs.
      *
      * @see     addTransition()
      */
@@ -229,10 +229,10 @@ class FSM
      * The processing routine checks these associations if it cannot first
      * find a match for (symbol, currentState).
      *
-     * @param   string  $state          This transition's starting state.
-     * @param   string  $nextState      This transition's ending state.
-     * @param   string  $action         The name of the function to invoke
-     *                                  when this transition occurs.
+     * @param   string    $state          This transition's starting state.
+     * @param   string    $nextState      This transition's ending state.
+     * @param   callable  $action         The name of the function to invoke
+     *                                    when this transition occurs.
      *
      * @see     addTransition()
      */
@@ -249,9 +249,9 @@ class FSM
      *
      * The default transition can be removed by setting $nextState to NULL.
      *
-     * @param   string  $nextState      The transition's ending state.
-     * @param   string  $action         The name of the function to invoke
-     *                                  when this transition occurs.
+     * @param   string    $nextState      The transition's ending state.
+     * @param   callable  $action         The name of the function to invoke
+     *                                    when this transition occurs.
      */
     function setDefaultTransition($nextState, $action)
     {

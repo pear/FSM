@@ -17,16 +17,8 @@
         "./"
     ],
     "license": "MIT License",
-    "name": "pear/fsm",
-    "homepage": "http://pear.github.io/FSM/",
-    "support": {
-        "issues": "https://github.com/pear/FSM/issues",
-        "source": "https://github.com/pear/FSM"
-    },
+    "name": "hut6/fsm",
     "type": "library",
-    "require": {
-        "pear/pear_exception": "*"
-    },
     "require-dev": {
         "phpunit/phpunit": "*"
     },
