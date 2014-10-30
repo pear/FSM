@@ -21,6 +21,6 @@ $graph = $converter->export();
 echo $graph->parse();
 
 --EXPECT--
-digraph FSM {
-"START" [ shape="invhouse" ];
+strict digraph FSM {
+    START [ shape=invhouse ];
 }
