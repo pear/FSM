@@ -318,9 +318,7 @@ class FSM
             return;
         }
 
-        /* Update the current state to this transition's exit state. */
-        $this->_previousState = $this->_currentState;        
-        $this->_currentState = $transition[0];
+        $nextState = $transition[0];
 
         /* If an action for this transition has been specified, execute it. */
         if (!empty($transition[1])) {
@@ -329,9 +327,13 @@ class FSM
 
             /* If a new state was returned, update the current state. */
             if (!empty($state) && is_string($state)) {
-                $this->_currentState = $state;
+                $nextState = $state;
             }
         }
+
+        /* Update the states to reflect the result of the transition. */
+        $this->_previousState = $this->_currentState;
+        $this->_currentState = $nextState;
     }
 
     /**
