@@ -2,25 +2,25 @@
 
 require_once 'FSM.php';
 
-function BeginBuildNumber($symbol, $payload)
+function BeginBuildNumber($symbol, &$payload)
 {
     array_push($payload, $symbol);
 }
 
-function BuildNumber($symbol, $payload)
+function BuildNumber($symbol, &$payload)
 {
     $n = array_pop($payload);
     $n = $n . $symbol;
     array_push($payload, $n);
 }
 
-function EndBuildNumber($symbol, $payload)
+function EndBuildNumber($symbol, &$payload)
 {
     $n = array_pop($payload);
     array_push($payload, (int)$n);
 }
 
-function DoOperator($symbol, $payload)
+function DoOperator($symbol, &$payload)
 {
     $ar = array_pop($payload);
     $al = array_pop($payload);
