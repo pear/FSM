@@ -1,7 +1,7 @@
 <?php
 /* vim: set expandtab softtabstop=4 tabstop=4 shiftwidth=4: */
 /**
- * Copyright (c) 2002-2011 Jon Parise <jon@php.net>
+ * Copyright (c) 2002-2015 Jon Parise <jon@php.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -323,7 +323,7 @@ class FSM
         /* If an action for this transition has been specified, execute it. */
         if (!empty($transition[1])) {
             $state = call_user_func_array($transition[1],
-                                          array($symbol, &$this->_payload));
+                array($symbol, &$this->_payload, $this->_currentState, $nextState));
 
             /* If a new state was returned, update the current state. */
             if (!empty($state) && is_string($state)) {

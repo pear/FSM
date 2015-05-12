@@ -66,12 +66,12 @@ Let's assume our machine has two additional states: ``MIDDLE`` and ``END``.
 Here's how we would define transitions to move us from ``START`` to ``MIDDLE``
 and from ``MIDDLE`` to ``END``::
 
-    function FirstCallback($symbol, $payload)
+    function FirstCallback($symbol, &$payload, $currentState, $nextState)
     {
         echo "First Transition\n";
     }
 
-    function SecondCallback($symbol, $payload)
+    function SecondCallback($symbol, &$payload, $currentState, $nextState)
     {
         echo "Second Transition\n";
     }
@@ -106,7 +106,7 @@ the user.
 
 ::
 
-    function ErrorCallback($symbol, $payload)
+    function ErrorCallback($symbol, &$payload, $currentState, $nextState)
     {
         echo "This symbol does not compute: $symbol\n";
     }
