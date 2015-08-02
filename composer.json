@@ -25,6 +25,7 @@
     },
     "type": "library",
     "require": {
+        "php": ">=4.0.4",
         "pear/pear_exception": "*"
     },
     "require-dev": {
