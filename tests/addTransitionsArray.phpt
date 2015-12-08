@@ -24,8 +24,8 @@ function transition2($symbol, &$payload)
 }
 
 $transitions = array(
-	array('TRANS1', 'START', 'FINISH', 'transition1'),
-	array('TRANS1', 'FINISH', 'START', 'transition2'),
+    array('TRANS1', 'START', 'FINISH', 'transition1'),
+    array('TRANS2', 'FINISH', 'START', 'transition2'),
 );
 
 $stack = array();
