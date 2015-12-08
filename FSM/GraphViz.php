@@ -294,7 +294,9 @@ class FSM_GraphViz extends FSM
         }
 
         if (!is_array($callback)) {
-            $reflector = new ReflectionFunction($callback);
+            strstr($callback, '::')
+                ? $reflector = new ReflectionMethod($callback)
+                : $reflector = new ReflectionFunction($callback);
         } else {
             $reflector = new ReflectionMethod($callback[0], $callback[1]);
         }
