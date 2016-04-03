@@ -3,4 +3,8 @@ install:
   - pear install -fa package.xml
 php:
   - 5.4
-script: phpunit tests/
+  - 5.5
+  - 5.6
+  - 7.0
+  - nightly
+script: pear run-tests tests/
