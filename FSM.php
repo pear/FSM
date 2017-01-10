@@ -122,7 +122,7 @@ class FSM
      * @param   mixed   $payload        A payload that will be passed to each
      *                                  action function.
      */
-    function FSM($initialState, &$payload)
+    function __construct($initialState, &$payload)
     {
         $this->_initialState = $initialState;
         $this->_currentState = $initialState;
