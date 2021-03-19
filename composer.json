@@ -16,7 +16,7 @@
     "include-path": [
         "./"
     ],
-    "license": "MIT License",
+    "license": "MIT",
     "name": "pear/fsm",
     "homepage": "http://pear.github.io/FSM/",
     "support": {
